@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Détail du plat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item lines="none" *ngIf="currentplat">
+        <ion-label>{{currentplat.nom}}</ion-label>
+        <ion-label>{{currentplat.prix}}</ion-label>
+        <ion-label>{{currentplat.description}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

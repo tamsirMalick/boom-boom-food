@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-button slot="start" (click)="back()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    <ion-title>Ajouter un plat</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]= "ajoutForm" (ngSubmit) ="onAdd()">
+    <ion-item>
+      <ion-label>Nom : </ion-label><ion-input name="nom" id ="nom" [formControl]="nom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Prix : </ion-label><ion-input type="number" name = "prix" [formControl]="prix"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description : </ion-label><ion-input name = "description" [formControl]="description"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit" [disabled]="nom.hasError('required') || prix.hasError('required') || description.hasError('required')">Ajouter</ion-button>
+  </form>
+</ion-content>
