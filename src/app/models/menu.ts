@@ -1,5 +1,6 @@
 import { Plat } from '../models/plat';
 
 export class Menu {
-    plat: Plat[];
+    id: number;
+    plat: Plat;
 }

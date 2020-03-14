@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Plat } from '../../models/plat';
 import { PlatService } from '../../services/plat.service';
+import { MenuService } from '../../services/menu.service';
+import {Menu} from '../../models/menu';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-plat-detail',
@@ -10,9 +13,11 @@ import { PlatService } from '../../services/plat.service';
 })
 export class PlatDetailPage implements OnInit {
   id: number;
+  menu: Menu;
   currentplat: Plat;
 
-  constructor(private route: ActivatedRoute, private platService: PlatService) {
+  constructor(private route: ActivatedRoute, private platService: PlatService, private menuService: MenuService,
+              private router: Router) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
    }
 
@@ -26,4 +31,9 @@ export class PlatDetailPage implements OnInit {
     });
   }
 
+    addAuMenuDuJour() {
+        this.menu = new Menu();
+        this.menu.plat = this.currentplat;
+        this.menuService.addMenu(this.menu).subscribe(() => { this.router.navigateByUrl('/menu'); });
+    }
 }

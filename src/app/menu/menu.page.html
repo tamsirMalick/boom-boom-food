@@ -7,6 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content >
+  <ion-card *ngFor="let menu of menus; let i = index">
+    <ion-card-content *ngIf="menu">
+      <ion-item lines="none">
+        <ion-label>{{menu.plat.nom}}</ion-label>
+        <ion-label>{{menu.plat.prix}}</ion-label>
+        <ion-label>{{menu.plat.description}}</ion-label>
+        <ion-icon class="marge-right" color="danger" name="trash" (click)="deletePlat(menu.id)"></ion-icon>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Créer mon compte
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="accountForm" (ngSubmit)="createAccount()">
+  <ion-list>
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input type="text" name="username" [formControl]="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" name="email" [formControl]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Téléphone</ion-label>
+        <ion-input type="number" name="email" [formControl]="telephone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mot de passe</ion-label>
+        <ion-input type="password" name="password" [formControl]="password"></ion-input>
+      </ion-item>
+  </ion-list>
+      <ion-button type="submit" expand="block" [disabled]="username.hasError('required') ||
+        email.hasError('required') || email.invalid || telephone.hasError('required') || password.hasError('required')">Créer mon compte</ion-button>
+  </form>
+</ion-content>

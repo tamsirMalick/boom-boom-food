@@ -3,4 +3,5 @@ export class Plat {
     nom: string;
     prix: number;
     description: string;
+    platImg: File;
 }

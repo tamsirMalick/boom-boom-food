@@ -1,5 +1,7 @@
 {
   "name": "boom-boom-food",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

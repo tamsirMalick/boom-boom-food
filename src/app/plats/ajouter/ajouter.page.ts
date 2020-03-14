@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Plat } from 'src/app/models/plat';
 import { PlatService } from '../../services/plat.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
 
 @Component({
@@ -15,13 +16,16 @@ export class AjouterPage implements OnInit {
   nom = new FormControl('', Validators.required);
   prix = new FormControl('', [Validators.required]);
   description = new FormControl('', [Validators.required]);
+  platImg = new FormControl('', [Validators.required]);
   ajoutForm: FormGroup = this.fb.group({
     nom: this.nom,
    prix: this.prix,
-   description: this.description
+   description: this.description,
+   platImg: this.platImg
  });
 
-  constructor(private router: Router, private platService: PlatService, private fb: FormBuilder) {
+  constructor(private router: Router, private platService: PlatService, private fb: FormBuilder,
+              private fileChooser: FileChooser) {
   }
 
   ngOnInit() {

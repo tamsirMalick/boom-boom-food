@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Acceder à mon compte
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" name="email" [formControl]="identifier"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Mot de passe</ion-label>
+        <ion-input type="password" name="password" [formControl]="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" expand="block" [disabled]=" identifier.hasError('required') || identifier.invalid  || password.hasError('required')">Se connecter</ion-button>
+  </form>
+</ion-content>
