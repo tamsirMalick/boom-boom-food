@@ -25,7 +25,9 @@ export class LoginPage implements OnInit {
 
   login() {
     this.userService.login(this.loginForm.value).subscribe(data => {
+      this.user = data.user;
       window.localStorage.setItem('token', data.jwt);
+      window.localStorage.setItem('userId', this.user.id + '');
       this.router.navigateByUrl(this.userService.redirectUrl);
     },
     error => {
@@ -33,4 +35,5 @@ export class LoginPage implements OnInit {
     });
   }
 
+  resetAccount() { }
 }

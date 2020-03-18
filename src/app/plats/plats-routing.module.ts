@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PlatsPage } from './plats.page';
+import {AuthGuard} from '../auth.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'commande',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./commande/commande.module').then( m => m.CommandePageModule)
   },
   {

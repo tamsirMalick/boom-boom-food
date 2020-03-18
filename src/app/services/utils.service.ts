@@ -7,12 +7,12 @@ import {ToastController} from '@ionic/angular';
 export class UtilsService {
 
   constructor(public toastCtrl: ToastController) { }
-  async presentToast(textMessage: string, toastColor: string) {
+  async presentToast(textMessage: string, toastColor: string, second: number = 3000, pos: any = 'bottom') {
     const  toast = await this.toastCtrl.create({
       message: textMessage,
       color: toastColor,
-      duration: 3000,
-      position: 'bottom'
+      duration: second,
+      position: pos
     });
     await toast.present();
   }

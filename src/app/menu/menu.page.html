@@ -3,6 +3,10 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="end" name="cart"></ion-icon>
+      <ion-text style="margin-left: 10px; margin-right: 10px;">{{totalCommand}}</ion-text>
+    </ion-buttons>
     <ion-title>Menu du jour</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +17,7 @@
       <ion-item lines="none">
         <ion-label>{{menu.plat.nom}}</ion-label>
         <ion-label>{{menu.plat.prix}}</ion-label>
-        <ion-label>{{menu.plat.description}}</ion-label>
+        <ion-icon name="cart-outline" (click)="commander(menu.plat.id)"></ion-icon>
         <ion-icon class="marge-right" color="danger" name="trash" (click)="deletePlat(menu.id)"></ion-icon>
       </ion-item>
     </ion-card-content>
