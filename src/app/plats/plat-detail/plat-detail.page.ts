@@ -5,6 +5,7 @@ import { PlatService } from '../../services/plat.service';
 import { MenuService } from '../../services/menu.service';
 import {Menu} from '../../models/menu';
 import {Router} from '@angular/router';
+import {UtilsService} from '../../services/utils.service';
 
 @Component({
   selector: 'app-plat-detail',
@@ -17,7 +18,7 @@ export class PlatDetailPage implements OnInit {
   currentplat: Plat;
 
   constructor(private route: ActivatedRoute, private platService: PlatService, private menuService: MenuService,
-              private router: Router) {
+              private router: Router, private utilsService: UtilsService) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
    }
 
@@ -36,4 +37,8 @@ export class PlatDetailPage implements OnInit {
         this.menu.plat = this.currentplat;
         this.menuService.addMenu(this.menu).subscribe(() => { this.router.navigateByUrl('/menu'); });
     }
+
+  isAdmin(): boolean {
+    return this.utilsService.userRole();
+  }
 }

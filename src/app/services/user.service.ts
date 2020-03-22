@@ -10,6 +10,8 @@ import {environment} from '../../environments/environment';
 })
 export class UserService {
   redirectUrl: string;
+  isConnected = false;
+  url = 'http:/localhost:1337/admin/plugins/users-permissions/auth/reset-password';
   constructor(private http: HttpClient) { }
   public addUSer(user: User): Observable<User> {
     return this.http.post<User>(environment.URL + '/auth/local/register', user).pipe();
@@ -25,5 +27,9 @@ export class UserService {
   }
   public login(user: User): Observable<any> {
     return this.http.post(environment.URL + '/auth/local', user).pipe();
+  }
+  resetPassword(mail: string): Observable<any> {
+    console.log(mail);
+    return this.http.post<any>(environment.URL + '/auth/forgot-password', { email: mail}).pipe();
   }
 }

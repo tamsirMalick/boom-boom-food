@@ -22,12 +22,13 @@ export class MenuPage implements OnInit {
   user: User;
   plat: Plat;
   userId;
-  totalCommand = 0;
+  totalCommand;
 
   constructor(private menuService: MenuService, private commandeService: CommandeService, private utilsService: UtilsService,
               private userService: UserService, private platService: PlatService) { }
   ngOnInit() {
    this.getMenu();
+   this.getTotalCommande();
   }
   getMenu() {
     this.menuService.getMenu().subscribe(data => {
@@ -35,6 +36,21 @@ export class MenuPage implements OnInit {
         },
         error => { console.log('Aucun menu disponible'); }
     );
+  }
+  getTotalCommande() {
+      this.totalCommand = 0;
+      this.userId = Number(window.localStorage.getItem('userId'));
+      this.userService.getUser(this.userId).subscribe(u => {
+          this.user = u;
+          this.commandeService.getAllCommande().subscribe(c => {
+              // tslint:disable-next-line:prefer-for-of
+              for (let i = 0; i < c.length; i++) {
+                  if ( c[i].user.id === this.user.id) {
+                      this.totalCommand ++;
+                  }
+              }
+          });
+      });
   }
   deletePlat(id: number) {
     if (confirm('Etês vous sur de vouloir supprimé ce menu ?')) {
@@ -51,8 +67,8 @@ export class MenuPage implements OnInit {
         this.platService.getPlat(id).subscribe(data => {
             this.plat = data; this.commande.plat = this.plat;
             this.commandeService.addCommande(this.commande).subscribe(() => {
-                this.utilsService.presentToast('Vous avez commandé le plat ' + this.plat.nom, 'success', 2000, 'middle');
-                this.totalCommand ++;
+                this.utilsService.presentToast('Vous avez commandé le plat ' + this.plat.nom, 'success', 2000, 'bottom');
+                this.getTotalCommande();
             });
         });
     }

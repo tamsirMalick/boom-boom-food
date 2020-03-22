@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlatService } from '../services/plat.service';
+import {UtilsService} from '../services/utils.service';
+import localeFr from '@angular/common/locales/fr';
+import {registerLocaleData} from '@angular/common';
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-plats',
@@ -9,8 +13,7 @@ import { PlatService } from '../services/plat.service';
 })
 export class PlatsPage implements OnInit {
   plats = [];
-
-  constructor(private router: Router, private platService: PlatService) {
+  constructor(private router: Router, private platService: PlatService, private utilsService: UtilsService) {
     this.getAllPlats();
   }
 
@@ -43,5 +46,8 @@ export class PlatsPage implements OnInit {
 
   details(id: number) {
     this.router.navigate(['plats/plat-detail', id]);
+  }
+  isAdmin(): boolean {
+    return this.utilsService.userRole();
   }
 }

@@ -24,6 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'plat-detail/:id',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./plat-detail/plat-detail.module').then( m => m.PlatDetailPageModule)
   }
 ];

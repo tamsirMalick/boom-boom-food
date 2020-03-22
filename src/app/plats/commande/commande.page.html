@@ -3,10 +3,51 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Mes commandes</ion-title>
+    <ion-title>Liste des commandes</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-list>
+    <ion-list *ngIf="isAdmin()" style="margin-top: 0px;">
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col style="font-weight: bold" size="3">Clients</ion-col>
+          <ion-col style="font-weight: bold" size="3">Téléphone</ion-col>
+          <ion-col style="font-weight: bold" size="3">Plats</ion-col>
+          <ion-col style="font-weight: bold" size="3">OPTIONS</ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngFor="let commande of commandes" class="col">
+        <ion-row *ngIf="isAdmin()" >
+          <ion-col size="3">{{commande.user.username}}</ion-col>
+          <ion-col size="3">{{commande.user.telephone}}</ion-col>
+          <ion-col size="3">{{commande.plat.nom}}</ion-col>
+          <ion-col style="font-style: italic; font-size: 0.8em;" *ngIf="!commande.validated"><ion-checkbox disabled="true" checked="false"color="primary" style="margin-right: 5px"></ion-checkbox>Non validé</ion-col>
+          <ion-col style="font-style: italic; font-size: 0.8em;" *ngIf="commande.validated"><ion-checkbox disabled="true" checked="true" color="primary" style="margin-right: 5px"></ion-checkbox>Validé</ion-col>
+          <ion-col>
+            <ion-button size="small" color="secondary" style="padding: 0px;" [disabled]="commande.validated" (click)="valider(commande.id)">Valider cette commande</ion-button>
+            <ion-button size="small" color="danger" style="padding: 0px;" (click)="annuler(commande.id)">Annuler</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    <ion-list *ngIf="!isAdmin()" style="margin-top: 0px;">
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col style="font-weight: bold" size="3">Plat</ion-col>
+          <ion-col style="font-weight: bold" size="3">Prix</ion-col>
+          <ion-col style="font-weight: bold; font-style: italic;" size="6">Etat de la commande</ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngFor="let commande of commandes" class="col">
+          <ion-row *ngIf="commande.user.id === userId && !isAdmin()">
+            <ion-col size="3">{{commande.plat.nom}}</ion-col>
+            <ion-col size="3">{{commande.plat.prix | currency: 'FCFA': 'symbol': '0.0-1': 'fr'}}</ion-col>
+            <ion-col size="6" style="font-style: italic; font-size: 0.8em; color: #3a7be0" *ngIf="commande.validated">Votre commande est validé</ion-col>
+            <ion-col size="6" style="font-style: italic; font-size: 0.8em;" *ngIf="!commande.validated">Commande en attente..</ion-col>
+            <ion-button size="small" color="danger" style="padding: 0px;" [disabled]="commande.validated" (click)="annuler(commande.id)">Annuler ma commande</ion-button>
+          </ion-row>
+      </ion-grid>
+    </ion-list>
+  </ion-list>
 </ion-content>

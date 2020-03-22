@@ -3,10 +3,6 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-icon slot="end" name="cart"></ion-icon>
-      <ion-text style="margin-left: 10px; margin-right: 10px;">1</ion-text>
-    </ion-buttons>
     <ion-title>
       Plats
     </ion-title>
@@ -14,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addPlat()">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addPlat()" *ngIf="isAdmin()">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
@@ -24,9 +20,9 @@
       <ion-card-content>
         <ion-item lines="none" (click)="details(plat.id)">
           <ion-label>{{plat.nom}}</ion-label>
-          <ion-label>{{plat.prix}}</ion-label>
-          <ion-icon class="marge-right" color="danger" name="trash" (click)="deletePlat(plat.id)"></ion-icon>
-          <ion-icon name="create" (click)="update(plat.id)"></ion-icon>
+          <ion-label>{{plat.prix | currency: 'FCFA': 'symbol': '0.0-1': 'fr'}}</ion-label>
+          <ion-icon class="marge-right" color="danger" name="trash" (click)="deletePlat(plat.id)" *ngIf="isAdmin()"></ion-icon>
+          <ion-icon name="create" (click)="update(plat.id)" *ngIf="isAdmin()"></ion-icon>
         </ion-item>
       </ion-card-content>
     </ion-card>

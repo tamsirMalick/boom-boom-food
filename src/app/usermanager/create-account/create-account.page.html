@@ -26,7 +26,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Mot de passe</ion-label>
-        <ion-input type="password" name="password" [formControl]="password"></ion-input>
+        <ion-input type="password" name="password" [formControl]="password" zxcvbn="passwordStrength"></ion-input>
       </ion-item>
   </ion-list>
       <ion-button type="submit" expand="block" [disabled]="username.hasError('required') ||

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Commande} from '../models/commande';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,13 @@ export class CommandeService {
   getAllCommande(): Observable<Commande[]> {
     return this.http.get<Commande[]>(environment.URL + '/commandes').pipe();
   }
+  validateCommande(commande: Commande): Observable<Commande> {
+    return this.http.put<Commande>(environment.URL + '/commandes/' + commande.id, commande).pipe();
+  }
   removeCommande(id: number): Observable<Commande> {
-    return this.http.delete<Commande>(environment.URL + '/commande/' + id).pipe();
+    return this.http.delete<Commande>(environment.URL + '/commandes/' + id).pipe();
+  }
+  getUserCommande(id: number): Observable<Commande> {
+    return this.http.get<Commande>(environment.URL + '/commandes/' + id).pipe();
   }
 }

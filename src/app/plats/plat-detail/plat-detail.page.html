@@ -12,7 +12,7 @@
     <ion-card-content>
       <ion-item lines="none" *ngIf="currentplat">
         <ion-label>{{currentplat.nom}}</ion-label>
-        <ion-button color="success" (click)="addAuMenuDuJour()">ajouter au menu du jour</ion-button>
+        <ion-button *ngIf="isAdmin()" color="success" (click)="addAuMenuDuJour()">ajouter au menu du jour</ion-button>
       </ion-item>
     </ion-card-content>
   </ion-card>

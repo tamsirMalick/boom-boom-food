@@ -4,24 +4,35 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Acceder à mon compte
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-list>
-      <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input type="email" name="email" [formControl]="identifier"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Mot de passe</ion-label>
-        <ion-input type="password" name="password" [formControl]="password"></ion-input>
-      </ion-item>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <ion-list *ngIf="!isForgotPassword">
+          <ion-item>
+            <ion-label>Email</ion-label>
+            <ion-input type="email" name="email" [formControl]="identifier"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Mot de passe</ion-label>
+            <ion-input type="password" name="password" [formControl]="password"></ion-input>
+          </ion-item>
+          <a style="margin-left: 60%; margin-top: 15%;" (click)="resetAccount()">Mot de passe oublié ?</a>
+          <ion-button type="submit" expand="block" [disabled]=" identifier.hasError('required') || identifier.invalid  || password.hasError('required')">Se connecter</ion-button>
+        </ion-list>
+      </form>
     </ion-list>
-    <ion-text><a (click)="resetAccount()">Mot de passe oublié ?</a></ion-text>
-    <ion-button type="submit" expand="block" [disabled]=" identifier.hasError('required') || identifier.invalid  || password.hasError('required')">Se connecter</ion-button>
-  </form>
+    <ion-list *ngIf="isForgotPassword">
+      <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
+      <ion-item>
+        <ion-label>Entrer votre email : </ion-label>
+        <ion-input type="email" name="email" [formControl]="email"></ion-input>
+      </ion-item>
+      <ion-button type="submit" expand="block" [disabled]=" email.hasError('required') || email.invalid">Réinitialisé</ion-button>
+      </form>
+    </ion-list>
 </ion-content>

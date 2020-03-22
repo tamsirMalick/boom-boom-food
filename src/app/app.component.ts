@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {UtilsService} from './services/utils.service';
 
 @Component({
   selector: 'app-root',
@@ -31,24 +32,14 @@ export class AppComponent implements OnInit {
       title: 'Mes commandes',
       url: '/plats/commande',
       icon: 'cart'
-    },
-    {
-      title: 'Créer mon compte',
-      url: '/create-account',
-      icon: 'create'
-    },
-    {
-      title: 'Se connecter',
-      url: '/login',
-      icon: 'log-in'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private utilsService: UtilsService
   ) {
     this.initializeApp();
   }
@@ -57,17 +48,24 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.isAuthenticated();
     });
   }
 
   ngOnInit() {
-    // const path = window.location.pathname.split('folder/')[1];
-    // if (path !== undefined) {
-    //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    // }
+  }
+
+  isAuthenticated(): boolean {
+    if (this.utilsService.isConnected()) {
+      return true;
+    }
+    return false;
   }
 
   onDeconnecte() {
-    window.localStorage.removeItem('token');
+    this.utilsService.logOut();
+  }
+  connected() {
+    return this.utilsService.isConnected();
   }
 }

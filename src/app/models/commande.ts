@@ -5,4 +5,5 @@ export class Commande {
     id: number;
     plat: Plat;
     user: User;
+    validated: boolean;
 }
