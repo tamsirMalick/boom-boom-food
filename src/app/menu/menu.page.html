@@ -14,11 +14,12 @@
 <ion-content >
   <ion-card *ngFor="let menu of menus; let i = index">
     <ion-card-content *ngIf="menu">
+      <img height="200" width="390" [src]="url+menu.plat.url">
       <ion-item lines="none">
-        <ion-label>{{menu.plat.nom}}</ion-label>
-        <ion-label>{{menu.plat.prix}}</ion-label>
+        <ion-label style="font-weight: bold">{{menu.plat.nom}}</ion-label>
+        <ion-label style="font-weight: bold">{{menu.plat.prix | currency: 'FCFA': 'symbol': '0.0-1': 'fr'}}</ion-label>
         <ion-icon name="cart-outline" (click)="commander(menu.plat.id)"></ion-icon>
-        <ion-icon class="marge-right" color="danger" name="trash" (click)="deletePlat(menu.id)"></ion-icon>
+        <ion-icon style="margin-left: 10px;" color="danger" name="trash" (click)="deletePlat(menu.id)"></ion-icon>
       </ion-item>
     </ion-card-content>
   </ion-card>

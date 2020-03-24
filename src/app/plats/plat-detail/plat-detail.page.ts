@@ -16,6 +16,7 @@ export class PlatDetailPage implements OnInit {
   id: number;
   menu: Menu;
   currentplat: Plat;
+  url = 'http://localhost:1337';
 
   constructor(private route: ActivatedRoute, private platService: PlatService, private menuService: MenuService,
               private router: Router, private utilsService: UtilsService) {
@@ -29,6 +30,7 @@ export class PlatDetailPage implements OnInit {
   getDetail() {
     this.platService.getPlat(this.id).subscribe(plat => {
       this.currentplat = plat;
+      console.log(plat.platImg.url);
     });
   }
 

@@ -6,6 +6,7 @@ export class User {
     email: string;
     telephone: number;
     password: string;
-    photo: [];
+    url: string;
+    photo: any;
     commande: Commande[];
 }

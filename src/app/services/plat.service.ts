@@ -3,6 +3,7 @@ import { Plat } from '../models/plat';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {Image} from '../models/image';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,12 @@ export class PlatService {
     return this.http.put<Plat>(environment.URL + '/plats/' + plat.id, plat).pipe();
   }
 
-  public getAll(): Observable<Plat[]> {
-    return this.http.get<Plat[]>(environment.URL + '/plats').pipe();
+  public getAll(): Observable<Plat> {
+    return this.http.get<Plat>(environment.URL + '/plats').pipe();
   }
 
   public getPlat(id: number): Observable<Plat> {
     return this.http.get<Plat>(environment.URL + '/plats/' + id);
   }
-
 }
 

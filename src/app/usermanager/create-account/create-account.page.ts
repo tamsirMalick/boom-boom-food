@@ -5,14 +5,8 @@ import {User} from '../../models/user';
 import {UtilsService} from '../../services/utils.service';
 import {Router} from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { File, FileEntry } from '@ionic-native/File/ngx';
-import {FilePath} from '@ionic-native/file-path/ngx';
-import {WebView} from '@ionic-native/ionic-webview/ngx';
 import { Storage } from '@ionic/storage';
-import {ActionSheetController, AlertController, LoadingController, Platform} from '@ionic/angular';
-import {PictureSourceType} from '@ionic-native/camera';
-
-const STORAGE_KEY = 'my_images';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-create-account',
@@ -21,24 +15,23 @@ const STORAGE_KEY = 'my_images';
 })
 
 export class CreateAccountPage implements OnInit {
-  username = new FormControl('', [Validators.required, Validators.email]);
-  email = new FormControl('', Validators.required);
+  username = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  email = new FormControl('', [Validators.required, Validators.email]);
   telephone = new FormControl('', Validators.required);
-  password = new FormControl('', Validators.required);
-  images = [];
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  image: any;
   accountForm: FormGroup = this.fb.group({
     username: this.username,
     email: this.email,
     telephone: this.telephone,
     password: this.password,
-    photo: this.images
+    photo: ''
   });
   user: User;
   private ref: any;
 
   constructor(private userService: UserService, private fb: FormBuilder, private utilsService: UtilsService, private router: Router,
-              private camera: Camera, private storage: Storage, private file: File, private filePath: FilePath,
-              private webview: WebView, private plt: Platform, private alertCtrl: AlertController) { }
+              private camera: Camera, private storage: Storage, private alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
@@ -67,7 +60,24 @@ export class CreateAccountPage implements OnInit {
           }
         });
   }
-  public async takePicture() {
+    resetForm() {
+    this.username = new FormControl('');
+    this.email = new FormControl('');
+    this.telephone = new FormControl('');
+    this.password = new FormControl('');
+  }
+
+  private getPicture(options: CameraOptions) {
+    this.camera.getPicture(options)
+        .then(dataImage => {
+              const base64Image = 'data:image/jpeg;base64,' + dataImage;
+              this.image = base64Image;
+            }, (err) => {
+                 this.utilsService.presentToast('Une erreur est survenue !', 'danger');
+            }
+        );
+  }
+  public async takePhoto() {
     const options1: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -105,18 +115,4 @@ export class CreateAccountPage implements OnInit {
     await alert.present();
   }
 
-  private getPicture(options: CameraOptions) {
-    this.camera.getPicture(options)
-        .then(dataImage => {
-              const base64Image = 'data:image/jpeg;base64,' + dataImage;
-              // this.locService.addPhoto(base64Image, this.place.timestemps);
-            }, (err) => {}
-        );
-  }
-    resetForm() {
-    this.username = new FormControl('');
-    this.email = new FormControl('');
-    this.telephone = new FormControl('');
-    this.password = new FormControl('');
-  }
 }

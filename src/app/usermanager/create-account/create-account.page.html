@@ -10,24 +10,31 @@
 </ion-header>
 
 <ion-content>
+    <ion-avatar>
+        <ion-img src="../../../assets/icon/CreateAccount.png" height="100" width="100"></ion-img>
+    </ion-avatar>
   <form [formGroup]="accountForm" (ngSubmit)="createAccount()">
   <ion-list>
       <ion-item>
         <ion-label>Username</ion-label>
         <ion-input type="text" name="username" [formControl]="username"></ion-input>
+          <ion-label color="danger" *ngIf="accountForm.controls.username.hasError('minlength')">Votre username est trop court </ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Email</ion-label>
         <ion-input type="email" name="email" [formControl]="email"></ion-input>
+          <ion-label color="danger" *ngIf="accountForm.controls.email.hasError('email')">email invalide</ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Téléphone</ion-label>
-        <ion-input type="number" name="email" [formControl]="telephone"></ion-input>
+        <ion-input type="number" name="telephone" [formControl]="telephone"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Mot de passe</ion-label>
-        <ion-input type="password" name="password" [formControl]="password" zxcvbn="passwordStrength"></ion-input>
+          <ion-label>Mot de passe</ion-label>
+          <ion-input type="password" name="password" [formControl]="password" zxcvbn="passwordStrength"></ion-input>
+          <ion-label color="danger" *ngIf="accountForm.controls.password.hasError('minlength')">Minimum 6 caratères</ion-label>
       </ion-item>
+      <ion-button size="small" color="success" (click)="takePhoto()">choisir une photo</ion-button>
   </ion-list>
       <ion-button type="submit" expand="block" [disabled]="username.hasError('required') ||
         email.hasError('required') || email.invalid || telephone.hasError('required') || password.hasError('required')">Créer mon compte</ion-button>

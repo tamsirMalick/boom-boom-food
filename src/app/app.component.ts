@@ -11,6 +11,8 @@ import {UtilsService} from './services/utils.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  username;
+  url;
   public selectedIndex = 0;
   public appPages = [
     {
@@ -42,6 +44,8 @@ export class AppComponent implements OnInit {
     private utilsService: UtilsService
   ) {
     this.initializeApp();
+    this.username = window.localStorage.getItem('username');
+    this.url = 'http://localhost:1337' + window.localStorage.getItem('url');
   }
 
   initializeApp() {

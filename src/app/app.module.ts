@@ -8,9 +8,6 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import {Camera} from '@ionic-native/camera/ngx';
-import {File} from '@ionic-native/File/ngx';
-import {WebView} from '@ionic-native/ionic-webview/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
 
 
 import { AppComponent } from './app.component';
@@ -34,7 +31,7 @@ import {PasswordStrengthMeterModule} from 'angular-password-strength-meter';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Camera, File, WebView, FilePath
+    Camera
   ],
   bootstrap: [AppComponent]
 })

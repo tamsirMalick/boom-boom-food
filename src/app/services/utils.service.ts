@@ -26,6 +26,8 @@ export class UtilsService {
   logOut() {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('userId');
+    window.localStorage.removeItem('username');
+    window.localStorage.removeItem('url');
     window.localStorage.removeItem('role');
     window.localStorage.removeItem('connected');
     this.userService.isConnected = false;

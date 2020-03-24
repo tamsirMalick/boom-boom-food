@@ -20,6 +20,7 @@
     <ion-item>
       <ion-label>Photo : </ion-label><ion-input type="file" name = "description" [formControl]="platImg"></ion-input>
     </ion-item>
+    <ion-button size="small" color="success" (click)="takePhoto()">Ajouter une photo</ion-button>
     <ion-button expand="block" type="submit" [disabled]="nom.hasError('required') || prix.hasError('required') || description.hasError('required')">Ajouter</ion-button>
   </form>
 </ion-content>

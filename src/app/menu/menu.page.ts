@@ -8,6 +8,9 @@ import {UtilsService} from '../services/utils.service';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {PlatService} from '../services/plat.service';
+import localeFr from '@angular/common/locales/fr';
+import {registerLocaleData} from '@angular/common';
+registerLocaleData(localeFr, 'fr');
 
 
 @Component({
@@ -23,6 +26,7 @@ export class MenuPage implements OnInit {
   plat: Plat;
   userId;
   totalCommand;
+    url = 'http://localhost:1337';
 
   constructor(private menuService: MenuService, private commandeService: CommandeService, private utilsService: UtilsService,
               private userService: UserService, private platService: PlatService) { }

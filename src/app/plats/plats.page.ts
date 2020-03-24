@@ -4,6 +4,8 @@ import { PlatService } from '../services/plat.service';
 import {UtilsService} from '../services/utils.service';
 import localeFr from '@angular/common/locales/fr';
 import {registerLocaleData} from '@angular/common';
+import {Plat} from '../models/plat';
+import {Image} from '../models/image';
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -12,14 +14,17 @@ registerLocaleData(localeFr, 'fr');
   styleUrls: ['./plats.page.scss'],
 })
 export class PlatsPage implements OnInit {
-  plats = [];
+  plats: Plat;
+  url = 'http://localhost:1337';
+
+  images: Image[]
   constructor(private router: Router, private platService: PlatService, private utilsService: UtilsService) {
     this.getAllPlats();
   }
 
   getAllPlats() {
     this.platService.getAll().subscribe(data => {
-          this.plats = data;
+        this.plats = data;
         },
         error => {
           console.log('Une erreur est surenue');

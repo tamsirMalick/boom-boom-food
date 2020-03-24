@@ -34,6 +34,8 @@ export class LoginPage implements OnInit {
       this.user = data.user;
       window.localStorage.setItem('token', data.jwt);
       window.localStorage.setItem('userId', this.user.id + '');
+      window.localStorage.setItem('username', this.user.username);
+      window.localStorage.setItem('url', this.user.url);
       window.localStorage.setItem('role', data.user.role.type);
       window.localStorage.setItem('connected', 'connected');
       this.router.navigateByUrl(this.userService.redirectUrl);

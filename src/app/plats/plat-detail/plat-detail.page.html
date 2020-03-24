@@ -8,12 +8,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card *ngIf="currentplat">
     <ion-card-content>
-      <ion-item lines="none" *ngIf="currentplat">
+      <img height="200" width="390" [src]="url+currentplat.url">
+      <ion-item lines="none">
+        Plat :
         <ion-label>{{currentplat.nom}}</ion-label>
-        <ion-button *ngIf="isAdmin()" color="success" (click)="addAuMenuDuJour()">ajouter au menu du jour</ion-button>
       </ion-item>
+      <ion-item lines="none">
+        <ion-label >{{currentplat.description}}</ion-label>
+      </ion-item>
+      <ion-button size="small" *ngIf="isAdmin()" color="success" (click)="addAuMenuDuJour()">ajouter au menu du jour</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

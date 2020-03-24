@@ -10,6 +10,12 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
+          <ion-avatar style="margin-left: 100px" *ngIf="url">
+            <img width="200" height="200" [src]="url"/>
+          </ion-avatar>
+          <ion-label style="margin-left: 110px; margin-top: 15px;" color="primary">{{username}}</ion-label>
+        <ion-item>
+        </ion-item>
         <ion-list id="inbox-list">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
