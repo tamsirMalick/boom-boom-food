@@ -1,5 +1,4 @@
 import {Commande} from './commande';
-import {PlatImg} from './platImg';
 
 export class Plat {
     id: number;
