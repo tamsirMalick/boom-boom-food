@@ -13,4 +13,3 @@ Nous avons deux acteurs dans l'application qui sont l'administrateur et l'utilis
 Voici comment ça marche :
 Ouvri le dossier de l'appli saisir **npm install** 
 Une fois le dossier **node_module** telecharger, démarrer l'application avec **ionic serve** vous aurez la page **home** comme suit : 
-![Home](https://drive.google.com/drive/u/0/folders/1kAmuGOfraj39o-WcpnByO_KLw7KzTDh-)
