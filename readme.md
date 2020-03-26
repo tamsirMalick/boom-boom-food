@@ -32,8 +32,6 @@ J'ai un utilisateur simple qui peut consulter les plats proposer par le restaura
 ![6](https://user-images.githubusercontent.com/46402711/77593027-5aebe380-6eeb-11ea-9b17-4eb62ab722af.PNG)
 ![7](https://user-images.githubusercontent.com/46402711/77593038-60e1c480-6eeb-11ea-975c-bdd63f884932.PNG)
 ![8](https://user-images.githubusercontent.com/46402711/77592909-1e1fec80-6eeb-11ea-8ffc-0bbc24c07f71.PNG)
+![9](https://user-images.githubusercontent.com/46402711/77664147-d2665500-6f75-11ea-9091-5896bfbdf335.PNG)
+![10](https://user-images.githubusercontent.com/46402711/77664170-d98d6300-6f75-11ea-8245-1eab9ddccf98.PNG)
 
-**interface authenticated user**
-![9](https://user-images.githubusercontent.com/46402711/77660721-96c98c00-6f71-11ea-90dc-7309504cde81.PNG)
-![10](https://user-images.githubusercontent.com/46402711/77661927-2ae82300-6f73-11ea-9a51-6fbc07ce6c0c.PNG)
-![11](https://user-images.githubusercontent.com/46402711/77660711-93ce9b80-6f71-11ea-9dc4-aa28b9a4b5f1.PNG)
