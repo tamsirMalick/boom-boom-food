@@ -13,7 +13,6 @@ import {Camera} from '@ionic-native/camera/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {IonicStorageModule} from '@ionic/storage';
-import {PasswordStrengthMeterModule} from 'angular-password-strength-meter';
 
 
 @NgModule({
@@ -24,8 +23,7 @@ import {PasswordStrengthMeterModule} from 'angular-password-strength-meter';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot(),
-    PasswordStrengthMeterModule
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,

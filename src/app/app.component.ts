@@ -44,8 +44,6 @@ export class AppComponent implements OnInit {
     private utilsService: UtilsService
   ) {
     this.initializeApp();
-    this.username = window.localStorage.getItem('username');
-    this.url = 'http://localhost:1337' + window.localStorage.getItem('url');
   }
 
   initializeApp() {
@@ -57,6 +55,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.username = window.localStorage.getItem('username');
+    this.url = 'http://localhost:1337' + window.localStorage.getItem('url');
   }
 
   isAuthenticated(): boolean {

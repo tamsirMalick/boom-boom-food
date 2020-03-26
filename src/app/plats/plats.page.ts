@@ -17,7 +17,6 @@ export class PlatsPage implements OnInit {
   plats: Plat;
   url = 'http://localhost:1337';
 
-  images: Image[]
   constructor(private router: Router, private platService: PlatService, private utilsService: UtilsService) {
     this.getAllPlats();
   }

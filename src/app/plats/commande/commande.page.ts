@@ -17,8 +17,13 @@ export class CommandePage implements OnInit {
   commandes: Commande[];
   commande: Commande;
   userId = 0;
+  title = '';
   constructor(private commandeService: CommandeService, private utilsService: UtilsService) {
     this.userId = Number(localStorage.getItem('userId'));
+    if (this.isAdmin()) {
+      this.title = 'Liste des commandes';
+    }
+    this.title = 'Mes commandes';
   }
 
   ngOnInit() {
@@ -32,7 +37,6 @@ export class CommandePage implements OnInit {
   isAdmin(): boolean {
     return this.utilsService.userRole();
   }
-
   valider(id: number) {
     this.isValidated = true;
     this.commandeService.getUserCommande(id).subscribe(data => {

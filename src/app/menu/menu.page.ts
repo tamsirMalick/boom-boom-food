@@ -76,5 +76,8 @@ export class MenuPage implements OnInit {
             });
         });
     }
+    isAdmin(): boolean {
+        return this.utilsService.userRole();
+    }
 }
 
